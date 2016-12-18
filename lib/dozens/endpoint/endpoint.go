@@ -35,12 +35,12 @@ func (p Endpoint) String() string {
 	return u.String()
 }
 
-// Zone means `http://dozens.jp/api/zone.json`
-func Zone() Endpoint {
-	return NewEndpoint("zone.json")
-}
-
 // Authorize means `http://dozens.jp/api/authorize.json`
 func Authorize() Endpoint {
 	return NewEndpoint("authorize.json")
+}
+
+// Zone means `http://dozens.jp/api/zone.json`
+func Zone() Endpoint {
+	return NewEndpoint("zone.json")
 }

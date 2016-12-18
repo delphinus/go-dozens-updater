@@ -1,6 +1,7 @@
 package dozens
 
 import (
+	"io"
 	"net/http"
 
 	"github.com/delphinus/godo/lib/dozens/endpoint"
@@ -13,11 +14,35 @@ func MakeGet(p endpoint.Endpoint) (*http.Request, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "error in NewRequest")
 	}
+
+	if err := setHeader(req); err != nil {
+		return nil, errors.Wrap(err, "error in setHeader")
+	}
+
+	return req, nil
+}
+
+// MakePost returns request for dozens
+func MakePost(p endpoint.Endpoint, body io.Reader) (*http.Request, error) {
+	req, err := http.NewRequest("POST", p.String(), body)
+	if err != nil {
+		return nil, errors.Wrap(err, "error in NewRequest")
+	}
+
+	if err := setHeader(req); err != nil {
+		return nil, errors.Wrap(err, "error in setHeader")
+	}
+
+	return req, nil
+}
+
+func setHeader(req *http.Request) error {
 	token, err := GetToken()
 	if err != nil {
-		return nil, errors.Wrap(err, "error in GetToken")
+		return errors.Wrap(err, "error in GetToken")
 	}
 	req.Header.Set("X-Auth-Token", token)
 	req.Header.Set("Content-Type", "application/json")
-	return req, nil
+
+	return nil
 }

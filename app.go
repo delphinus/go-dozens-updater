@@ -12,7 +12,7 @@ func NewApp() *cli.App {
 	app.Author = "delphinus"
 	app.Email = "delphinus@remora.cx"
 	app.Commands = []cli.Command{
-		commandList,
+		commandZones,
 	}
 	return app
 }

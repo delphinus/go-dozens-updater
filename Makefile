@@ -17,3 +17,6 @@ install: ## Install packages for dependencies
 
 update: ## Update packages for dependencies
 	glide update
+
+build: ## build godo app
+	go build cmd/godo/godo.go

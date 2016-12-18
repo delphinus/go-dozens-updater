@@ -19,10 +19,10 @@ type domain struct {
 }
 
 // ZoneList returns zones list
-func ZoneList() (ZoneResponse, error) {
+func ZoneList(token string) (ZoneResponse, error) {
 	zoneResp := ZoneResponse{}
 
-	req, err := MakeGet(endpoint.ZoneList())
+	req, err := MakeGet(token, endpoint.ZoneList())
 	if err != nil {
 		return zoneResp, errors.Wrap(err, "error in MakeGet")
 	}

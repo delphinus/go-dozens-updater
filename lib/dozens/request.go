@@ -9,13 +9,13 @@ import (
 )
 
 // MakeGet returns request for dozens
-func MakeGet(p endpoint.Endpoint) (*http.Request, error) {
+func MakeGet(token string, p endpoint.Endpoint) (*http.Request, error) {
 	req, err := http.NewRequest("GET", p.String(), nil)
 	if err != nil {
 		return nil, errors.Wrap(err, "error in NewRequest")
 	}
 
-	if err := setHeader(req); err != nil {
+	if err := setHeader(token, req); err != nil {
 		return nil, errors.Wrap(err, "error in setHeader")
 	}
 
@@ -23,24 +23,20 @@ func MakeGet(p endpoint.Endpoint) (*http.Request, error) {
 }
 
 // MakePost returns request for dozens
-func MakePost(p endpoint.Endpoint, body io.Reader) (*http.Request, error) {
+func MakePost(token string, p endpoint.Endpoint, body io.Reader) (*http.Request, error) {
 	req, err := http.NewRequest("POST", p.String(), body)
 	if err != nil {
 		return nil, errors.Wrap(err, "error in NewRequest")
 	}
 
-	if err := setHeader(req); err != nil {
+	if err := setHeader(token, req); err != nil {
 		return nil, errors.Wrap(err, "error in setHeader")
 	}
 
 	return req, nil
 }
 
-func setHeader(req *http.Request) error {
-	token, err := GetToken()
-	if err != nil {
-		return errors.Wrap(err, "error in GetToken")
-	}
+func setHeader(token string, req *http.Request) error {
 	req.Header.Set("X-Auth-Token", token)
 	req.Header.Set("Content-Type", "application/json")
 

@@ -1,4 +1,4 @@
-package dozens
+package godo
 
 import (
 	"encoding/json"
@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/Songmu/prompter"
+	"github.com/delphinus/godo/lib/dozens"
 	"github.com/pkg/errors"
 )
 
@@ -40,8 +41,8 @@ var Config Configs
 // TokenExpire means expiration of the token
 const TokenExpire = time.Duration(20 * time.Hour)
 
-// GetToken returns access token for dozens
-func GetToken() (string, error) {
+// SetupConfig returns access token for dozens
+func SetupConfig() (string, error) {
 	if Config.Token != "" && Config.IsExpired() {
 		return Config.Token, nil
 	}
@@ -67,7 +68,7 @@ func createConfig() error {
 		Config.AuthInfo = inputAuthInfo()
 	}
 
-	authorizeResp, err := GetAuthorize()
+	authorizeResp, err := dozens.GetAuthorize(Config.Key, Config.User)
 	if err != nil {
 		return errors.Wrap(err, "errorin GetAuthorize")
 	}

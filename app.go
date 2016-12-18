@@ -22,5 +22,11 @@ func NewApp() *cli.App {
 			},
 		},
 	}
+	app.Before = func(c *cli.Context) error {
+		if c.Command.Name != "" {
+			SetupConfig()
+		}
+		return nil
+	}
 	return app
 }

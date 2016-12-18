@@ -15,15 +15,15 @@ type AuthorizeResponse struct {
 }
 
 // GetAuthorize returns authorization info
-func GetAuthorize() (AuthorizeResponse, error) {
+func GetAuthorize(key, user string) (AuthorizeResponse, error) {
 	authorizeResp := AuthorizeResponse{}
 
 	req, err := http.NewRequest("GET", endpoint.Authorize().String(), nil)
 	if err != nil {
 		return authorizeResp, errors.Wrap(err, "error in NewRequest")
 	}
-	req.Header.Set("X-Auth-Key", Config.Key)
-	req.Header.Set("X-Auth-User", Config.User)
+	req.Header.Set("X-Auth-Key", key)
+	req.Header.Set("X-Auth-User", user)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

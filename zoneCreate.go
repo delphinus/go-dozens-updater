@@ -49,7 +49,7 @@ func doZoneCreate(c *cli.Context) error {
 		MailAddress:     c.String("mailaddress"),
 	}
 
-	zone, err := dozens.ZoneCreate(body)
+	zone, err := dozens.ZoneCreate(Config.Token, body)
 	if err != nil {
 		return errors.Wrap(err, "error in PostCreate")
 	}

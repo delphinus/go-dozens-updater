@@ -44,20 +44,20 @@ const TokenExpire = time.Duration(20 * time.Hour)
 // SetupConfig returns access token for dozens
 func SetupConfig() error {
 	if Config.Token != "" && Config.IsExpired() {
-		return Config.Token, nil
+		return nil
 	}
 
 	if _, err := os.Stat(ConfigFile); os.IsNotExist(err) {
 		fmt.Fprintf(os.Stderr, "config file: `%s` does not exist. creating...\n", ConfigFile)
 		if err := createConfig(); err != nil {
-			return "", errors.Wrap(err, "error in createConfig")
+			return errors.Wrap(err, "error in createConfig")
 		}
 
 		return saveConfig()
 	}
 
 	if err := readConfig(); err != nil {
-		return "", errors.Wrap(err, "error in createConfig")
+		return errors.Wrap(err, "error in createConfig")
 	}
 
 	return saveConfig()

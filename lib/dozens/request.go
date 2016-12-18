@@ -13,7 +13,11 @@ func MakeGet(p endpoint.Endpoint) (*http.Request, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "error in NewRequest")
 	}
-	req.Header.Set("X-Auth-Token", Token())
+	token, err := GetToken()
+	if err != nil {
+		return nil, errors.Wrap(err, "error in GetToken")
+	}
+	req.Header.Set("X-Auth-Token", token)
 	req.Header.Set("Content-Type", "application/json")
 	return req, nil
 }

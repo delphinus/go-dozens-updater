@@ -51,7 +51,7 @@ func doZoneCreate(c *cli.Context) error {
 
 	zone, err := dozens.ZoneCreate(Config.Token, body)
 	if err != nil {
-		return errors.Wrap(err, "error in PostCreate")
+		return errors.Wrap(err, "error in ZoneCreate")
 	}
 
 	if err := json.NewEncoder(os.Stdout).Encode(zone); err != nil {

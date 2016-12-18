@@ -19,7 +19,7 @@ var commandZoneList = cli.Command{
 func doZoneList(c *cli.Context) error {
 	zone, err := dozens.ZoneList(Config.Token)
 	if err != nil {
-		return errors.Wrap(err, "error in GetZone")
+		return errors.Wrap(err, "error in ZoneList")
 	}
 	if err := json.NewEncoder(os.Stdout).Encode(zone); err != nil {
 		return errors.Wrap(err, "error in Encode")

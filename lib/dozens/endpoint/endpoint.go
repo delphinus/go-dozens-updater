@@ -1,6 +1,7 @@
 package endpoint
 
 import (
+	"fmt"
 	"net/url"
 	"strings"
 )

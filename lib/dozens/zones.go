@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/delphinus/godo/lib/dozens/path"
+	"github.com/delphinus/godo/lib/dozens/endpoint"
 	"github.com/pkg/errors"
 )
 
@@ -22,7 +22,7 @@ type domains struct {
 func GetZones() (ZonesResponse, error) {
 	zonesResp := ZonesResponse{}
 
-	req, err := MakeGet(path.Zone())
+	req, err := MakeGet(endpoint.Zone())
 	if err != nil {
 		return zonesResp, errors.Wrap(err, "error in MakeGet")
 	}

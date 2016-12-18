@@ -1,4 +1,4 @@
-package path
+package endpoint
 
 import (
 	"net/url"
@@ -15,18 +15,18 @@ func init() {
 	baseURL = url
 }
 
-// Path means the path struct
-type Path struct {
+// Endpoint means the path struct
+type Endpoint struct {
 	Base  *url.URL
 	Chunk string
 }
 
-// NewPath returns Path struct
-func NewPath(chunk string) Path {
-	return Path{baseURL, chunk}
+// NewEndpoint returns Endpoint struct
+func NewEndpoint(chunk string) Endpoint {
+	return Endpoint{baseURL, chunk}
 }
 
-func (p Path) String() string {
+func (p Endpoint) String() string {
 	u, err := url.Parse(p.Base.String())
 	if err != nil {
 		panic(err)
@@ -36,6 +36,6 @@ func (p Path) String() string {
 }
 
 // Zone means `http://dozens.jp/api/zone.json`
-func Zone() Path {
-	return NewPath("zone.json")
+func Zone() Endpoint {
+	return NewEndpoint("zone.json")
 }

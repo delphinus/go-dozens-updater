@@ -18,6 +18,11 @@ func MakePost(token string, p endpoint.Endpoint, body io.Reader) (*http.Request,
 	return makeRequest("POST", token, p, body)
 }
 
+// MakeDelete returns request for dozens
+func MakeDelete(token string, p endpoint.Endpoint) (*http.Request, error) {
+	return makeRequest("DELETE", token, p, nil)
+}
+
 func makeRequest(method, token string, p endpoint.Endpoint, body io.Reader) (*http.Request, error) {
 	req, err := http.NewRequest(method, p.String(), body)
 	if err != nil {

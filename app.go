@@ -28,6 +28,7 @@ func NewApp() *cli.App {
 				commandZoneList,
 				commandZoneCreate,
 				commandZoneUpdate,
+				commandZoneDelete,
 			},
 		},
 	}

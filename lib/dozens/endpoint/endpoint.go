@@ -55,3 +55,8 @@ func ZoneCreate() Endpoint {
 func ZoneUpdate(zoneID string) Endpoint {
 	return NewEndpoint(fmt.Sprintf("zone/update/%s.json", zoneID))
 }
+
+// ZoneDelete means `http://dozens.jp/api/zone/delete/:zone_id.json`
+func ZoneDelete(zoneID string) Endpoint {
+	return NewEndpoint(fmt.Sprintf("zone/delete/%s.json", zoneID))
+}

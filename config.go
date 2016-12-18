@@ -42,7 +42,7 @@ var Config Configs
 const TokenExpire = time.Duration(20 * time.Hour)
 
 // SetupConfig returns access token for dozens
-func SetupConfig() (string, error) {
+func SetupConfig() error {
 	if Config.Token != "" && Config.IsExpired() {
 		return Config.Token, nil
 	}
@@ -97,11 +97,11 @@ func readConfig() error {
 	return nil
 }
 
-func saveConfig() (string, error) {
+func saveConfig() error {
 	configDir := filepath.Dir(ConfigFile)
 	if _, err := os.Stat(configDir); os.IsNotExist(err) {
 		if err := os.MkdirAll(configDir, 0777); err != nil {
-			return "", errors.Wrap(err, "error in MkDirAll")
+			return errors.Wrap(err, "error in MkDirAll")
 		}
 	}
 
@@ -111,14 +111,14 @@ func saveConfig() (string, error) {
 
 	json, err := json.Marshal(Config)
 	if err != nil {
-		return "", errors.Wrap(err, "error in Marshal")
+		return errors.Wrap(err, "error in Marshal")
 	}
 
 	if err := ioutil.WriteFile(ConfigFile, json, 0666); err != nil {
-		return "", errors.Wrap(err, "error in WriteFile")
+		return errors.Wrap(err, "error in WriteFile")
 	}
 
-	return Config.Token, nil
+	return nil
 }
 
 func inputAuthInfo() AuthInfo {

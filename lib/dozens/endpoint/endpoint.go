@@ -39,3 +39,8 @@ func (p Endpoint) String() string {
 func Zone() Endpoint {
 	return NewEndpoint("zone.json")
 }
+
+// Authorize means `http://dozens.jp/api/authorize.json`
+func Authorize() Endpoint {
+	return NewEndpoint("authorize.json")
+}

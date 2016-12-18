@@ -22,7 +22,7 @@ type domain struct {
 func ZoneList() (ZoneResponse, error) {
 	zoneResp := ZoneResponse{}
 
-	req, err := MakeGet(endpoint.Zone())
+	req, err := MakeGet(endpoint.ZoneList())
 	if err != nil {
 		return zoneResp, errors.Wrap(err, "error in MakeGet")
 	}

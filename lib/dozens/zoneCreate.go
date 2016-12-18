@@ -27,7 +27,7 @@ func ZoneCreate(body ZoneCreateBody) (ZoneResponse, error) {
 		return zoneResp, errors.Wrap(err, "error in Marshal")
 	}
 
-	req, err := MakePost(endpoint.Create(), bytes.NewBuffer(bodyJSON))
+	req, err := MakePost(endpoint.ZoneCreate(), bytes.NewBuffer(bodyJSON))
 	if err != nil {
 		return zoneResp, errors.Wrap(err, "error in MakeGet")
 	}

@@ -40,12 +40,12 @@ func Authorize() Endpoint {
 	return NewEndpoint("authorize.json")
 }
 
-// Zone means `http://dozens.jp/api/zone.json`
-func Zone() Endpoint {
+// ZoneList means `http://dozens.jp/api/zone.json`
+func ZoneList() Endpoint {
 	return NewEndpoint("zone.json")
 }
 
-// Create means `http://dozens.jp/api/zone/create.json`
-func Create() Endpoint {
+// ZoneCreate means `http://dozens.jp/api/zone/create.json`
+func ZoneCreate() Endpoint {
 	return NewEndpoint("zone/create.json")
 }

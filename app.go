@@ -6,6 +6,13 @@ import (
 
 // NewApp will return godo App
 func NewApp() *cli.App {
+	before := func(c *cli.Context) error {
+		if len(c.Args()) == 0 {
+			return nil
+		}
+		return SetupConfig()
+	}
+
 	app := cli.NewApp()
 	app.Usage = "Manage DNS with dozens"
 	app.Version = Version
@@ -16,17 +23,13 @@ func NewApp() *cli.App {
 			Name:    "zone",
 			Aliases: []string{"z"},
 			Usage:   "Manage zones",
+			Before:  before,
 			Subcommands: []cli.Command{
 				commandZoneList,
 				commandZoneCreate,
+				commandZoneUpdate,
 			},
 		},
-	}
-	app.Before = func(c *cli.Context) error {
-		if c.Command.Name != "" {
-			SetupConfig()
-		}
-		return nil
 	}
 	return app
 }

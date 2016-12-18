@@ -9,19 +9,19 @@ import (
 	"github.com/urfave/cli"
 )
 
-var commandZones = cli.Command{
-	Name:    "zones",
+var commandZone = cli.Command{
+	Name:    "zone",
 	Aliases: []string{"z"},
 	Usage:   "List up zones in dozens",
-	Action:  doZones,
+	Action:  doZone,
 }
 
-func doZones(c *cli.Context) error {
-	zones, err := dozens.GetZones()
+func doZone(c *cli.Context) error {
+	zone, err := dozens.GetZone()
 	if err != nil {
-		return errors.Wrap(err, "error in GetZones")
+		return errors.Wrap(err, "error in GetZone")
 	}
-	if err := json.NewEncoder(os.Stdout).Encode(zones); err != nil {
+	if err := json.NewEncoder(os.Stdout).Encode(zone); err != nil {
 		return errors.Wrap(err, "error in Encode")
 	}
 	return nil

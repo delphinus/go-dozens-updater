@@ -10,10 +10,10 @@ import (
 
 // ZonesResponse means response of zones
 type ZonesResponse struct {
-	Domain domains `json:"domain"`
+	Domain []domain `json:"domain"`
 }
 
-type domains struct {
+type domain struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 }

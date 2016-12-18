@@ -5,18 +5,21 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/delphinus/godo/lib/dozens/endpoint"
 	"github.com/pkg/errors"
 )
 
-// ZoneDelete creates zone and returns zones list
-func ZoneDelete(token, zoneID string) (ZoneResponse, error) {
-	zoneResp := ZoneResponse{}
+// ZoneResponse means response of zones
+type ZoneResponse struct {
+	Domain []domain `json:"domain"`
+}
 
-	req, err := MakeDelete(token, endpoint.ZoneDelete(zoneID))
-	if err != nil {
-		return zoneResp, errors.Wrap(err, "error in MakeGet")
-	}
+type domain struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+func doRequest(req *http.Request) (ZoneResponse, error) {
+	zoneResp := ZoneResponse{}
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

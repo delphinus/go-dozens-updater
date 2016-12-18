@@ -50,3 +50,8 @@ func ZoneList() Endpoint {
 func ZoneCreate() Endpoint {
 	return NewEndpoint("zone/create.json")
 }
+
+// ZoneUpdate means `http://dozens.jp/api/zone/update/:zone_id.json`
+func ZoneUpdate(zoneID string) Endpoint {
+	return NewEndpoint(fmt.Sprintf("zone/update/%s.json", zoneID))
+}

@@ -13,6 +13,7 @@ func NewApp() *cli.App {
 	app.Email = "delphinus@remora.cx"
 	app.Commands = []cli.Command{
 		commandZone,
+		commandCreate,
 	}
 	return app
 }

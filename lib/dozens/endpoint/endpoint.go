@@ -44,3 +44,8 @@ func Authorize() Endpoint {
 func Zone() Endpoint {
 	return NewEndpoint("zone.json")
 }
+
+// Create means `http://dozens.jp/api/zone/create.json`
+func Create() Endpoint {
+	return NewEndpoint("zone/create.json")
+}

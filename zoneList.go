@@ -9,15 +9,15 @@ import (
 	"github.com/urfave/cli"
 )
 
-var commandZone = cli.Command{
-	Name:    "zone",
-	Aliases: []string{"z"},
+var commandZoneList = cli.Command{
+	Name:    "list",
+	Aliases: []string{"l"},
 	Usage:   "List up zones in dozens",
-	Action:  doZone,
+	Action:  doZoneList,
 }
 
-func doZone(c *cli.Context) error {
-	zone, err := dozens.GetZone()
+func doZoneList(c *cli.Context) error {
+	zone, err := dozens.ZoneList()
 	if err != nil {
 		return errors.Wrap(err, "error in GetZone")
 	}

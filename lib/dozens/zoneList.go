@@ -18,8 +18,8 @@ type domain struct {
 	Name string `json:"name"`
 }
 
-// GetZone returns zones list
-func GetZone() (ZoneResponse, error) {
+// ZoneList returns zones list
+func ZoneList() (ZoneResponse, error) {
 	zoneResp := ZoneResponse{}
 
 	req, err := MakeGet(endpoint.Zone())

@@ -12,8 +12,15 @@ func NewApp() *cli.App {
 	app.Author = "delphinus"
 	app.Email = "delphinus@remora.cx"
 	app.Commands = []cli.Command{
-		commandZone,
-		commandCreate,
+		{
+			Name:    "zone",
+			Aliases: []string{"z"},
+			Usage:   "Manage zones",
+			Subcommands: []cli.Command{
+				commandZoneList,
+				commandZoneCreate,
+			},
+		},
 	}
 	return app
 }

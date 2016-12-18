@@ -10,16 +10,16 @@ import (
 	"github.com/pkg/errors"
 )
 
-// CreateBody means post data for `create` request
-type CreateBody struct {
+// ZoneCreateBody means post data for `create` request
+type ZoneCreateBody struct {
 	Name            string `json:"name"`
 	AddGoogleApps   bool   `json:"add_google_apps"`
 	GoogleAuthorize string `json:"google_authorize,omitempty"`
 	MailAddress     string `json:"mailaddress,omitempty"`
 }
 
-// PostCreate creates zone and returns zones list
-func PostCreate(body CreateBody) (ZoneResponse, error) {
+// ZoneCreate creates zone and returns zones list
+func ZoneCreate(body ZoneCreateBody) (ZoneResponse, error) {
 	zoneResp := ZoneResponse{}
 
 	bodyJSON, err := json.Marshal(body)

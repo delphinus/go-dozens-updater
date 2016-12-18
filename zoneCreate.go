@@ -9,11 +9,11 @@ import (
 	"github.com/urfave/cli"
 )
 
-var commandCreate = cli.Command{
+var commandZoneCreate = cli.Command{
 	Name:    "create",
 	Aliases: []string{"c"},
 	Usage:   "Create a new zone",
-	Action:  doCreate,
+	Action:  doZoneCreate,
 	Flags: []cli.Flag{
 		cli.StringFlag{
 			Name:  "name, n",
@@ -36,20 +36,20 @@ var commandCreate = cli.Command{
 	},
 }
 
-func doCreate(c *cli.Context) error {
+func doZoneCreate(c *cli.Context) error {
 	name := c.String("name")
 	if name == "" {
 		return errors.New("Please specify name of zone")
 	}
 
-	body := dozens.CreateBody{
+	body := dozens.ZoneCreateBody{
 		Name:            name,
 		AddGoogleApps:   c.Bool("add_google_apps"),
 		GoogleAuthorize: c.String("google_authorize"),
 		MailAddress:     c.String("mailaddress"),
 	}
 
-	zone, err := dozens.PostCreate(body)
+	zone, err := dozens.ZoneCreate(body)
 	if err != nil {
 		return errors.Wrap(err, "error in PostCreate")
 	}

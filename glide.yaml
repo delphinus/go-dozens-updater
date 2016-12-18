@@ -1,4 +1,4 @@
-package: github.com/delphinus/go-dozens-updater
+package: github.com/delphinus/godo
 import:
 - package: github.com/urfave/cli
   version: ^1.19.1

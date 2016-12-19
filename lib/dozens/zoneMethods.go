@@ -68,7 +68,7 @@ func ZoneUpdate(token, zoneID, mailAddress string) (ZoneResponse, error) {
 	return doZoneRequest(req)
 }
 
-// ZoneDelete creates zone and returns zones list
+// ZoneDelete deletes zone and returns zones list
 func ZoneDelete(token, zoneID string) (ZoneResponse, error) {
 	req, err := MakeDelete(token, endpoint.ZoneDelete(zoneID))
 	if err != nil {

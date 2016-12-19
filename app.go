@@ -31,6 +31,15 @@ func NewApp() *cli.App {
 				commandZoneDelete,
 			},
 		},
+		{
+			Name:    "record",
+			Aliases: []string{"r"},
+			Usage:   "Manage records",
+			Before:  before,
+			Subcommands: []cli.Command{
+				commandRecordList,
+			},
+		},
 	}
 	return app
 }

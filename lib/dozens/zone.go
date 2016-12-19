@@ -18,7 +18,7 @@ type domain struct {
 	Name string `json:"name"`
 }
 
-func doRequest(req *http.Request) (ZoneResponse, error) {
+func doZoneRequest(req *http.Request) (ZoneResponse, error) {
 	zoneResp := ZoneResponse{}
 
 	resp, err := http.DefaultClient.Do(req)

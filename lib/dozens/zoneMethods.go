@@ -17,7 +17,7 @@ func ZoneList(token string) (ZoneResponse, error) {
 		return zoneResp, errors.Wrap(err, "error in MakeGet")
 	}
 
-	return doRequest(req)
+	return doZoneRequest(req)
 }
 
 // ZoneCreateBody means post data for `create` request
@@ -42,7 +42,7 @@ func ZoneCreate(token string, body ZoneCreateBody) (ZoneResponse, error) {
 		return zoneResp, errors.Wrap(err, "error in MakeGet")
 	}
 
-	return doRequest(req)
+	return doZoneRequest(req)
 }
 
 // ZoneUpdateBody means post data for `update` request
@@ -65,7 +65,7 @@ func ZoneUpdate(token, zoneID, mailAddress string) (ZoneResponse, error) {
 		return zoneResp, errors.Wrap(err, "error in MakeGet")
 	}
 
-	return doRequest(req)
+	return doZoneRequest(req)
 }
 
 // ZoneDelete creates zone and returns zones list
@@ -75,5 +75,5 @@ func ZoneDelete(token, zoneID string) (ZoneResponse, error) {
 		return ZoneResponse{}, errors.Wrap(err, "error in MakeGet")
 	}
 
-	return doRequest(req)
+	return doZoneRequest(req)
 }

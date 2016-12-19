@@ -65,3 +65,8 @@ func ZoneDelete(zoneID string) Endpoint {
 func RecordList(zoneName string) Endpoint {
 	return NewEndpoint(fmt.Sprintf("record/%s.json", zoneName))
 }
+
+// RecordDelete means `http://dozens.jp/api/record/delete/:record_id.json`
+func RecordDelete(recordID string) Endpoint {
+	return NewEndpoint(fmt.Sprintf("record/delete/%s.json", recordID))
+}

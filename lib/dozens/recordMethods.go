@@ -16,3 +16,13 @@ func RecordList(token, zoneName string) (RecordResponse, error) {
 
 	return doRecordRequest(req)
 }
+
+// RecordDelete deletes record and returns records list
+func RecordDelete(token, recordID string) (RecordResponse, error) {
+	req, err := MakeDelete(token, endpoint.RecordDelete(recordID))
+	if err != nil {
+		return RecordResponse{}, errors.Wrap(err, "error in MakeGet")
+	}
+
+	return doRecordRequest(req)
+}

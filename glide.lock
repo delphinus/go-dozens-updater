@@ -1,8 +1,20 @@
-hash: 774e9c2feb7bfd25de71842042c212270fec682d7d22754b090de73f5fd1e151
-updated: 2016-12-18T12:30:56.011331261+09:00
+hash: eab2caa851dcbcb919c520a08eddbf94ce1a723cd0da4812d65305b3dabac599
+updated: 2016-12-19T11:56:18.395178916+09:00
 imports:
+- name: github.com/mattn/go-isatty
+  version: 30a891c33c7cde7b02a981314b4228ec99380cca
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/Songmu/prompter
+  version: b5721e8d556682bcef33262731d98a39dee14dc4
 - name: github.com/urfave/cli
   version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
+- name: golang.org/x/crypto
+  version: 9b1a210a06ea1176ec1f0a1ddf83ad7463b8ea3e
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: d75a52659825e75fff6158388dddc6a5b04f9ba5
+  subpackages:
+  - unix
 testImports: []

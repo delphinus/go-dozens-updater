@@ -39,6 +39,7 @@ func NewApp() *cli.App {
 			Subcommands: []cli.Command{
 				commandRecordList,
 				commandRecordDelete,
+				commandRecordUpdate,
 			},
 		},
 	}

@@ -24,7 +24,7 @@ func RecordList(token, zoneName string) (RecordResponse, error) {
 func RecordDelete(token, recordID string) (RecordResponse, error) {
 	req, err := MakeDelete(token, endpoint.RecordDelete(recordID))
 	if err != nil {
-		return RecordResponse{}, errors.Wrap(err, "error in MakeGet")
+		return RecordResponse{}, errors.Wrap(err, "error in MakeDelete")
 	}
 
 	return doRecordRequest(req)

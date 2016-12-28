@@ -3,6 +3,8 @@ package dozens
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
+	"os"
 
 	"github.com/delphinus/godo/lib/dozens/endpoint"
 	"github.com/pkg/errors"
@@ -25,9 +27,9 @@ type RecordCreateBody struct {
 	Domain  string `json:"domain"`
 	Name    string `json:"name"`
 	Type    string `json:"type"`
-	Prio    int    `json:"prio"`
+	Prio    string `json:"prio"`
 	Content string `json:"content"`
-	TTL     string `json:"ttl"`
+	TTL     string `json:"ttl,omitempty"`
 }
 
 // RecordCreate creates record and returns records list

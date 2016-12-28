@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/Songmu/prompter"
-	"github.com/delphinus/godo/lib/dozens"
+	"github.com/delphinus/go-dozens"
 	"github.com/pkg/errors"
 )
 

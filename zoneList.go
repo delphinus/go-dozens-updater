@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/delphinus/godo/lib/dozens"
+	"github.com/delphinus/go-dozens"
 	"github.com/pkg/errors"
 	"github.com/urfave/cli"
 )

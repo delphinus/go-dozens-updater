@@ -1,6 +1,10 @@
 hash: eab2caa851dcbcb919c520a08eddbf94ce1a723cd0da4812d65305b3dabac599
-updated: 2016-12-19T11:56:18.395178916+09:00
+updated: 2016-12-29T01:14:49.226316465+09:00
 imports:
+- name: github.com/delphinus/go-dozens
+  version: a45652dbea53c8bfcd4410ab95c62ac95475d43c
+  subpackages:
+  - endpoint
 - name: github.com/mattn/go-isatty
   version: 30a891c33c7cde7b02a981314b4228ec99380cca
 - name: github.com/pkg/errors

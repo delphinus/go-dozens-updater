@@ -75,3 +75,8 @@ func RecordCreate() Endpoint {
 func RecordDelete(recordID string) Endpoint {
 	return NewEndpoint(fmt.Sprintf("record/delete/%s.json", recordID))
 }
+
+// RecordUpdate means `http://dozens.jp/api/record/update/:record_id.json`
+func RecordUpdate(recordID string) Endpoint {
+	return NewEndpoint(fmt.Sprintf("record/update/%s.json", recordID))
+}

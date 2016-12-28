@@ -40,6 +40,7 @@ func NewApp() *cli.App {
 				commandRecordList,
 				commandRecordCreate,
 				commandRecordDelete,
+				commandRecordUpdate,
 			},
 		},
 	}

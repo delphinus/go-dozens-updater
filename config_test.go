@@ -9,13 +9,10 @@ import (
 )
 
 func TestSetupConfigHaveValidConfig(t *testing.T) {
-	originalToken := Config.Token
-	Config.Token = "hoge"
-	defer func() { Config.Token = originalToken }()
-
-	originalExpiredAt := Config.ExpiredAt
-	Config.ExpiredAt = time.Now().Add(-time.Duration(1) * time.Minute)
-	defer func() { Config.ExpiredAt = originalExpiredAt }()
+	Config = Configs{
+		Token:     "hoge",
+		ExpiredAt: time.Now().Add(-time.Duration(1) * time.Minute),
+	}
 
 	if err := SetupConfig(); err != nil {
 		t.Errorf("error ocurred: %v", err)
@@ -28,9 +25,9 @@ func TestSetupConfigCreateConfig(t *testing.T) {
 	ConfigFile = path.Join(tmpDir, "config")
 	defer func() { ConfigFile = originalConfigFile }()
 
-	originalIsValid := Config.IsValid
-	Config.IsValid = true
-	defer func() { Config.IsValid = originalIsValid }()
+	Config = Configs{
+		IsValid: true,
+	}
 
 	err := SetupConfig()
 	expected := "error in createConfig"

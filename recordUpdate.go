@@ -15,7 +15,7 @@ var commandRecordUpdate = cli.Command{
 	Usage:   "Update the specified record",
 	Action:  doRecordUpdate,
 	Flags: []cli.Flag{
-		cli.UintFlag{
+		cli.StringFlag{
 			Name:  "prio, p",
 			Usage: "Priority to set",
 		},
@@ -37,7 +37,7 @@ func doRecordUpdate(c *cli.Context) error {
 	recordID := c.Args().Get(0)
 
 	body := dozens.RecordUpdateBody{
-		Prio:    c.Uint("prio"),
+		Prio:    c.String("prio"),
 		Content: c.String("content"),
 		TTL:     c.String("ttl"),
 	}

@@ -8,3 +8,5 @@ import:
   version: ^0.1.0
 - package: github.com/delphinus/go-dozens
   version: ^1.0.0
+- package: github.com/jarcoal/httpmock
+  version: v1

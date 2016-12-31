@@ -1,10 +1,12 @@
-hash: c92ad4de8a1a98b717418aef63f91675f780db662ff4aa01addf8812a8fd3cba
-updated: 2016-12-31T16:41:13.803327891+09:00
+hash: c050cb3614ea2930bed9932c5c1ffdf6f7ede9aaacc3c2bf9219130164075c24
+updated: 2016-12-31T21:30:24.355272184+09:00
 imports:
 - name: github.com/delphinus/go-dozens
   version: 275d157cb81e47e7615da9d45bcd086d8deb5fc2
   subpackages:
   - endpoint
+- name: github.com/jarcoal/httpmock
+  version: 6aa33143427f6eb0bebcc0af42e8db85e39a42c0
 - name: github.com/mattn/go-isatty
   version: 30a891c33c7cde7b02a981314b4228ec99380cca
 - name: github.com/pkg/errors

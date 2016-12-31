@@ -70,7 +70,7 @@ func createConfig() error {
 
 	authorizeResp, err := dozens.GetAuthorize(Config.Key, Config.User)
 	if err != nil {
-		return errors.Wrap(err, "errorin GetAuthorize")
+		return errors.Wrap(err, "error in GetAuthorize")
 	}
 
 	Config.Token = authorizeResp.AuthToken

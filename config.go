@@ -27,7 +27,7 @@ type Configs struct {
 	AuthInfo
 	Token     string    `json:"token"`
 	IsValid   bool      `json:"isValid"`
-	ExpiredAt time.Time `json:"updatedAt"`
+	ExpiredAt time.Time `json:"expiredAt"`
 }
 
 // IsExpired will return true if it is expired

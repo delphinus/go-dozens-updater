@@ -44,7 +44,7 @@ func doRecordUpdate(c *cli.Context) error {
 
 	record, err := dozens.RecordUpdate(Config.Token, recordID, body)
 	if err != nil {
-		return errors.Wrap(err, "errorin RecordUpdate")
+		return errors.Wrap(err, "error in RecordUpdate")
 	}
 
 	if err := json.NewEncoder(os.Stdout).Encode(record); err != nil {

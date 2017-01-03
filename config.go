@@ -27,6 +27,7 @@ type Configs struct {
 	AuthInfo
 	Token     string    `json:"token"`
 	IsValid   bool      `json:"isValid"`
+	MyIP      string    `json:"myIP"`
 	ExpiredAt time.Time `json:"expiredAt"`
 }
 
@@ -53,14 +54,14 @@ func SetupConfig() error {
 			return errors.Wrap(err, "error in createConfig")
 		}
 
-		return saveConfig()
+		return SaveConfig()
 	}
 
 	if err := readConfig(); err != nil {
 		return errors.Wrap(err, "error in createConfig")
 	}
 
-	return saveConfig()
+	return SaveConfig()
 }
 
 func createConfig() error {
@@ -97,7 +98,8 @@ func readConfig() error {
 	return nil
 }
 
-func saveConfig() error {
+// SaveConfig will save config to ConfigFile
+func SaveConfig() error {
 	configDir := filepath.Dir(ConfigFile)
 	if _, err := os.Stat(configDir); os.IsNotExist(err) {
 		if err := os.MkdirAll(configDir, 0777); err != nil {

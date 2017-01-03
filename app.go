@@ -43,6 +43,26 @@ func NewApp() *cli.App {
 				commandRecordUpdate,
 			},
 		},
+		{
+			Name:   "renew",
+			Usage:  "Renew record entry if needed",
+			Before: func(c *cli.Context) error { return SetupConfig() },
+			Action: renew,
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "zone,z",
+					Usage: "Zone name to update",
+				},
+				cli.StringFlag{
+					Name:  "domain, d",
+					Usage: "Domain to update IP Address",
+				},
+				cli.BoolFlag{
+					Name:  "show-ip-only, s",
+					Usage: "Show current IP address setting",
+				},
+			},
+		},
 	}
 	return app
 }

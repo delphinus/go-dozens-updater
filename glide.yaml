@@ -10,3 +10,5 @@ import:
   version: ^1.0.0
 - package: github.com/jarcoal/httpmock
   version: v1
+- package: github.com/rdegges/go-ipify
+- package: github.com/jpillora/backoff

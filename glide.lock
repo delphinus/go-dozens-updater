@@ -1,5 +1,5 @@
-hash: c050cb3614ea2930bed9932c5c1ffdf6f7ede9aaacc3c2bf9219130164075c24
-updated: 2016-12-31T21:30:24.355272184+09:00
+hash: 40e517c507c082586eb416043114a1da6295f263d60fe4490b1303c6a758ba93
+updated: 2017-01-03T20:34:27.199136565+09:00
 imports:
 - name: github.com/delphinus/go-dozens
   version: 275d157cb81e47e7615da9d45bcd086d8deb5fc2
@@ -7,16 +7,20 @@ imports:
   - endpoint
 - name: github.com/jarcoal/httpmock
   version: 6aa33143427f6eb0bebcc0af42e8db85e39a42c0
+- name: github.com/jpillora/backoff
+  version: f24585d1c70490c0920ab34924f54f726e1416c7
 - name: github.com/mattn/go-isatty
   version: 30a891c33c7cde7b02a981314b4228ec99380cca
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/rdegges/go-ipify
+  version: 2d94a6a86c4055118cc30fae2aaed47ec01f2210
 - name: github.com/Songmu/prompter
   version: b5721e8d556682bcef33262731d98a39dee14dc4
 - name: github.com/urfave/cli
   version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
 - name: golang.org/x/crypto
-  version: 9b1a210a06ea1176ec1f0a1ddf83ad7463b8ea3e
+  version: 01be46f62051d02cb6a36c9b47b37b24e5758c81
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys

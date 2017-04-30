@@ -13,7 +13,7 @@ test: ## Run tests only
 	go test $$(glide novendor) $(OPT)
 
 test-coverage: ## Run tests and show coverage in browser
-	go test -v -coverprofile=$(COVERAGE) -covermode=count
+	go test -v -race -coverprofile=$(COVERAGE) -covermode=count
 	go tool cover -html=$(COVERAGE)
 
 install: ## Install packages for dependencies

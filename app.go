@@ -46,7 +46,7 @@ func NewApp() *cli.App {
 		{
 			Name:   "renew",
 			Usage:  "Renew record entry if needed",
-			Before: func(c *cli.Context) error { return SetupConfig() },
+			Before: before,
 			Action: renew,
 			Flags: []cli.Flag{
 				cli.StringFlag{

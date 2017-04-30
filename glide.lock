@@ -1,12 +1,10 @@
-hash: fd734466eda656370b81a682c09a78797fdcf2416b5512915e8f798de783ed3f
-updated: 2017-04-30T12:23:44.823492418+09:00
+hash: e0cdd8f08762cb8bf0836b28e92766ae1805b0ff4b3b1c4377b8818634b81e40
+updated: 2017-04-30T17:39:58.615078398+09:00
 imports:
 - name: github.com/delphinus/go-dozens
   version: 275d157cb81e47e7615da9d45bcd086d8deb5fc2
   subpackages:
   - endpoint
-- name: github.com/jarcoal/httpmock
-  version: cf52904a3cf0f78f199ecade6a6df8e245d5b25a
 - name: github.com/jpillora/backoff
   version: 06c7a16c845dc8e0bf575fafeeca0f5462f5eb4d
 - name: github.com/koron/go-dproxy
@@ -29,4 +27,6 @@ imports:
   version: 9ccfe848b9db8435a24c424abbc07a921adf1df5
   subpackages:
   - unix
-testImports: []
+testImports:
+- name: github.com/jarcoal/httpmock
+  version: cf52904a3cf0f78f199ecade6a6df8e245d5b25a

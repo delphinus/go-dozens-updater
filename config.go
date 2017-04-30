@@ -93,7 +93,7 @@ func readConfig() error {
 	}
 
 	if Config.Token == "" || Config.IsExpired() {
-		createConfig()
+		return createConfig()
 	}
 
 	return nil

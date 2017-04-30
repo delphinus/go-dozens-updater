@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	godo.NewApp().Run(os.Args)
+	_ = godo.NewApp().Run(os.Args)
 }

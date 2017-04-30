@@ -20,37 +20,39 @@ func TestSetupConfigHaveValidConfig(t *testing.T) {
 	}
 }
 
-func makeTmpConfig(ctx context.Context, txt string) error {
+func makeTmpConfig(ctx context.Context, txt string) (string, error) {
 	tmp, err := ioutil.TempFile("", "")
 	if err != nil {
-		return err
+		return "", err
 	}
-
-	originalConfigFile := ConfigFile
-	ConfigFile = tmp.Name()
 
 	go func() {
 		<-ctx.Done()
 		_ = tmp.Close()
-		ConfigFile = originalConfigFile
 	}()
 
 	if txt != "" {
 		_, err := tmp.WriteString(txt)
 		if err != nil {
-			return err
+			return "", err
 		}
 	}
 
-	return nil
+	return tmp.Name(), nil
 }
 
 func TestSetupConfigCreateConfig(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	if err := makeTmpConfig(ctx, ""); err != nil {
+	f, err := makeTmpConfig(ctx, "")
+	if err != nil {
 		t.Errorf("error to create tmp config: %v", err)
 	}
-	defer cancel()
+	original := ConfigFile
+	ConfigFile = f
+	defer func() {
+		cancel()
+		ConfigFile = original
+	}()
 
 	Config = Configs{
 		IsValid: true,
@@ -64,7 +66,7 @@ func TestSetupConfigCreateConfig(t *testing.T) {
 
 func TestSetupConfigReadConfigValidly(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	err := makeTmpConfig(ctx, fmt.Sprintf(`{
+	f, err := makeTmpConfig(ctx, fmt.Sprintf(`{
 		"key": "hoge",
 		"user": "fuga",
 		"token": "hoge",
@@ -74,7 +76,12 @@ func TestSetupConfigReadConfigValidly(t *testing.T) {
 	if err != nil {
 		t.Errorf("error to create tmp config: %v", err)
 	}
-	defer cancel()
+	original := ConfigFile
+	ConfigFile = f
+	defer func() {
+		cancel()
+		ConfigFile = original
+	}()
 
 	if err := SetupConfig(); err != nil {
 		t.Errorf("error occurred: %v", err)

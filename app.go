@@ -61,6 +61,10 @@ func NewApp() *cli.App {
 					Name:  "show-ip-only, s",
 					Usage: "Show current IP address setting",
 				},
+				cli.BoolFlag{
+					Name:  "ipv6, 6",
+					Usage: "Use ipv6 instead of ipv4",
+				},
 			},
 		},
 	}

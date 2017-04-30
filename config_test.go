@@ -20,10 +20,10 @@ func TestSetupConfigHaveValidConfig(t *testing.T) {
 	}
 }
 
-func makeTmpConfig(ctx context.Context, txt string) (string, error) {
+func makeTmpConfig(ctx context.Context, txt string) error {
 	tmp, err := ioutil.TempFile("", "")
 	if err != nil {
-		return "", err
+		return err
 	}
 
 	originalConfigFile := ConfigFile
@@ -38,17 +38,16 @@ func makeTmpConfig(ctx context.Context, txt string) (string, error) {
 	if txt != "" {
 		_, err := tmp.WriteString(txt)
 		if err != nil {
-			return "", err
+			return err
 		}
 	}
 
-	return tmp.Name(), nil
+	return nil
 }
 
 func TestSetupConfigCreateConfig(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	_, err := makeTmpConfig(ctx, "")
-	if err != nil {
+	if err := makeTmpConfig(ctx, ""); err != nil {
 		t.Errorf("error to create tmp config: %v", err)
 	}
 	defer cancel()
@@ -65,13 +64,12 @@ func TestSetupConfigCreateConfig(t *testing.T) {
 
 func TestSetupConfigReadConfigValidly(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-	_, err := makeTmpConfig(ctx, fmt.Sprintf(`{
+	err := makeTmpConfig(ctx, fmt.Sprintf(`{
 		"key": "hoge",
 		"user": "fuga",
 		"token": "hoge",
 		"expiresAt": "%s"
 	}`, time.Now().Add(time.Duration(1)*time.Minute).Format(time.RFC3339)))
-	defer cancel()
 
 	if err != nil {
 		t.Errorf("error to create tmp config: %v", err)

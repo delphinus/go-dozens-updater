@@ -25,11 +25,11 @@ type AuthInfo struct {
 // Configs stores config for godo
 type Configs struct {
 	AuthInfo
-	Token     string    `json:"token"`
-	IsValid   bool      `json:"isValid"`
-	MyIP      string    `json:"myIP"`
-	MyIPv6    string    `json:"myIPv6"`
-	ExpiresAt time.Time `json:"expiresAt"`
+	Token     string    `json:"token,omitempty"`
+	IsValid   bool      `json:"isValid,omitempty"`
+	MyIP      string    `json:"myIP,omitempty"`
+	MyIPv6    string    `json:"myIPv6,omitempty"`
+	ExpiresAt time.Time `json:"expiresAt,omitempty"`
 }
 
 // IsExpired will return true if it is expired

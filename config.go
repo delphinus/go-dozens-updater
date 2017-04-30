@@ -29,12 +29,12 @@ type Configs struct {
 	IsValid   bool      `json:"isValid"`
 	MyIP      string    `json:"myIP"`
 	MyIPv6    string    `json:"myIPv6"`
-	ExpiredAt time.Time `json:"expiredAt"`
+	ExpiresAt time.Time `json:"expiresAt"`
 }
 
 // IsExpired will return true if it is expired
 func (c Configs) IsExpired() bool {
-	return c.ExpiredAt.Before(time.Now())
+	return c.ExpiresAt.Before(time.Now())
 }
 
 // Config is a loaded config from ConfigFile
@@ -76,7 +76,7 @@ func createConfig() error {
 	}
 
 	Config.Token = authorizeResp.AuthToken
-	Config.ExpiredAt = time.Now().Add(TokenExpire)
+	Config.ExpiresAt = time.Now().Add(TokenExpire)
 
 	return nil
 }

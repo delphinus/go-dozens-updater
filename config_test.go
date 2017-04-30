@@ -11,7 +11,7 @@ import (
 func TestSetupConfigHaveValidConfig(t *testing.T) {
 	Config = Configs{
 		Token:     "hoge",
-		ExpiredAt: time.Now().Add(-time.Duration(1) * time.Minute),
+		ExpiresAt: time.Now().Add(-time.Duration(1) * time.Minute),
 	}
 
 	if err := SetupConfig(); err != nil {

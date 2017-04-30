@@ -2,6 +2,7 @@ package godo
 
 import (
 	"context"
+	"fmt"
 	"io/ioutil"
 	"strings"
 	"testing"
@@ -59,5 +60,25 @@ func TestSetupConfigCreateConfig(t *testing.T) {
 	expected := "error in createConfig"
 	if err := SetupConfig(); err == nil || strings.Index(err.Error(), expected) != 0 {
 		t.Errorf("error differs: %v", err)
+	}
+}
+
+func TestSetupConfigReadConfigValidly(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	_, err := makeTmpConfig(ctx, fmt.Sprintf(`{
+		"key": "hoge",
+		"user": "fuga",
+		"token": "hoge",
+		"expiresAt": "%s"
+	}`, time.Now().Add(time.Duration(1)*time.Minute).Format(time.RFC3339)))
+	defer cancel()
+
+	if err != nil {
+		t.Errorf("error to create tmp config: %v", err)
+	}
+	defer cancel()
+
+	if err := SetupConfig(); err != nil {
+		t.Errorf("error occurred: %v", err)
 	}
 }

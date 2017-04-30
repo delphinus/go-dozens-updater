@@ -45,7 +45,7 @@ const TokenExpire = time.Duration(20 * time.Hour)
 
 // SetupConfig returns access token for dozens
 func SetupConfig() error {
-	if Config.Token != "" && Config.IsExpired() {
+	if Config.Token != "" && !Config.IsExpired() {
 		return nil
 	}
 

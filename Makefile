@@ -17,9 +17,9 @@ test-coverage: ## Run tests and show coverage in browser
 	go tool cover -html=$(COVERAGE)
 
 install: ## Install packages for dependencies
-	go get github.com/Masterminds/glide
+	which glide > /dev/null || go get github.com/Masterminds/glide
 	glide install
-	[ -d .git/hooks ] && cd .git/hooks && [ -L pre-commit ] || ln -s ../../scripts/git-hooks/pre-commit
+	[[ -d .git/hooks ]] && cd .git/hooks && [[ -L pre-commit ]] || ln -s ../../scripts/git-hooks/pre-commit
 
 update: ## Update packages for dependencies
 	glide update

@@ -28,6 +28,7 @@ type Configs struct {
 	Token     string    `json:"token"`
 	IsValid   bool      `json:"isValid"`
 	MyIP      string    `json:"myIP"`
+	MyIPv6    string    `json:"myIPv6"`
 	ExpiredAt time.Time `json:"expiredAt"`
 }
 

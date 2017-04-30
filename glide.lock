@@ -1,16 +1,18 @@
-hash: 40e517c507c082586eb416043114a1da6295f263d60fe4490b1303c6a758ba93
-updated: 2017-01-03T20:34:27.199136565+09:00
+hash: fd734466eda656370b81a682c09a78797fdcf2416b5512915e8f798de783ed3f
+updated: 2017-04-30T12:23:44.823492418+09:00
 imports:
 - name: github.com/delphinus/go-dozens
   version: 275d157cb81e47e7615da9d45bcd086d8deb5fc2
   subpackages:
   - endpoint
 - name: github.com/jarcoal/httpmock
-  version: 6aa33143427f6eb0bebcc0af42e8db85e39a42c0
+  version: cf52904a3cf0f78f199ecade6a6df8e245d5b25a
 - name: github.com/jpillora/backoff
-  version: f24585d1c70490c0920ab34924f54f726e1416c7
+  version: 06c7a16c845dc8e0bf575fafeeca0f5462f5eb4d
+- name: github.com/koron/go-dproxy
+  version: 009e1192eaace40a885c5b93c37613b3cae820d6
 - name: github.com/mattn/go-isatty
-  version: 30a891c33c7cde7b02a981314b4228ec99380cca
+  version: fc9e8d8ef48496124e79ae0df75490096eccf6fe
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/rdegges/go-ipify
@@ -20,11 +22,11 @@ imports:
 - name: github.com/urfave/cli
   version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
 - name: golang.org/x/crypto
-  version: 01be46f62051d02cb6a36c9b47b37b24e5758c81
+  version: c7af5bf2638a1164f2eb5467c39c6cffbd13a02e
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys
-  version: d75a52659825e75fff6158388dddc6a5b04f9ba5
+  version: 9ccfe848b9db8435a24c424abbc07a921adf1df5
   subpackages:
   - unix
 testImports: []

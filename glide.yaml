@@ -8,9 +8,9 @@ import:
   version: ^0.1.0
 - package: github.com/delphinus/go-dozens
   version: ^1.0.0
-- package: github.com/jarcoal/httpmock
-  version: v1
 - package: github.com/rdegges/go-ipify
 - package: github.com/jpillora/backoff
 - package: github.com/koron/go-dproxy
   version: ^1.1.0
+testImport:
+- package: github.com/jarcoal/httpmock

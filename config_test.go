@@ -2,9 +2,11 @@ package godo
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"path"
 	"strings"
 	"testing"
 	"time"
@@ -46,36 +48,24 @@ func makeTmpConfig(ctx context.Context, txt string) (string, error) {
 	return tmp.Name(), nil
 }
 
-func makeMockDozens(ctx context.Context, method, url string, responder httpmock.Responder) {
-	httpmock.Activate()
-
-	go func() {
-		<-ctx.Done()
-		httpmock.DeactivateAndReset()
-	}()
-
-	httpmock.RegisterResponder(method, url, responder)
-}
-
 func TestSetupConfigCreateConfig(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
-	f, err := makeTmpConfig(ctx, "")
-	if err != nil {
-		t.Errorf("error to create tmp config: %v", err)
-	}
+	d, _ := ioutil.TempDir("", "")
 	original := ConfigFile
-	ConfigFile = f
-	defer func() {
-		cancel()
-		ConfigFile = original
-	}()
+	ConfigFile = path.Join(d, "config")
+	defer func() { ConfigFile = original }()
 
 	Config = Configs{
 		IsValid: true,
 	}
 
+	httpmock.Activate()
+	url := endpoint.Authorize().String()
+	responder := httpmock.NewErrorResponder(errors.New("hoge"))
+	httpmock.RegisterResponder("GET", url, responder)
+	defer httpmock.DeactivateAndReset()
+
 	expected := "error in createConfig"
-	if err := SetupConfig(); err == nil || strings.Index(err.Error(), expected) != 0 {
+	if err := SetupConfig(); err == nil || !strings.Contains(err.Error(), expected) {
 		t.Errorf("error differs: %v", err)
 	}
 }
@@ -104,7 +94,7 @@ func TestSetupConfigReadConfigValidly(t *testing.T) {
 	}
 }
 
-func TestSetupConfigReadConfigCreateConfigAndFail(t *testing.T) {
+func TestSetupConfigReadConfigCreateConfig(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	f, err := makeTmpConfig(ctx, fmt.Sprintf(`{
 		"key": "hoge",
@@ -123,9 +113,11 @@ func TestSetupConfigReadConfigCreateConfigAndFail(t *testing.T) {
 		ConfigFile = original
 	}()
 
+	httpmock.Activate()
 	url := endpoint.Authorize().String()
 	responder, _ := httpmock.NewJsonResponder(http.StatusOK, &dozens.AuthorizeResponse{"hoge"})
-	makeMockDozens(ctx, "GET", url, responder)
+	httpmock.RegisterResponder("GET", url, responder)
+	defer httpmock.DeactivateAndReset()
 
 	if err := SetupConfig(); err != nil {
 		t.Errorf("error occuured: %v", err)

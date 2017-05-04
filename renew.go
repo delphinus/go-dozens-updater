@@ -13,6 +13,7 @@ func renew(c *cli.Context) error {
 	domain := c.String("domain")
 	showIPOnly := c.Bool("show-ip-only")
 	ipv6 := c.Bool("ipv6")
+	mail := c.Bool("mail")
 	if zone == "" || domain == "" {
 		return errors.New("Please specify zone & domain")
 	}
@@ -43,7 +44,23 @@ func renew(c *cli.Context) error {
 		if _, err := dozens.RecordUpdate(Config.Token, recordID, body); err != nil {
 			return errors.Wrap(err, "error in RecordUpdate")
 		}
-		fmt.Fprintln(c.App.Writer, "IP Adress has renewed successfully.")
+		fmt.Fprintln(c.App.Writer, "IP Adress has been renewed successfully.")
+
+		if mail {
+			var m string
+			if ipv6 {
+				m = "IPv6"
+			} else {
+				m = "IPv4"
+			}
+			content := fmt.Sprintf(`%s Address has been renewd successfully
+
+old: %s
+new: %s`, m, oldIP, ip)
+			if err := sendMail([]byte(content)); err != nil {
+				return errors.Wrap(err, "error in mail")
+			}
+		}
 	}
 
 	if ipv6 {

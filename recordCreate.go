@@ -60,10 +60,6 @@ func doRecordCreate(c *cli.Context) error {
 	}
 
 	name := c.String("name")
-	if name == "" {
-		return errors.New("Please specify name of the record")
-	}
-
 	rType := c.String("type")
 	if rType == "" {
 		return errors.New("Please specify type of the record")

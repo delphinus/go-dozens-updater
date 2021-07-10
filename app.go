@@ -65,6 +65,10 @@ func NewApp() *cli.App {
 					Name:  "ipv6, 6",
 					Usage: "Use ipv6 instead of ipv4",
 				},
+				cli.BoolFlag{
+					Name:  "mail, m",
+					Usage: "Mail results if IP has been changed",
+				},
 			},
 		},
 	}
